@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+    </head> 
+
+<body>
+
+<h1>Columns Detected: </h1>
+
+{% for val in list %}
+
+    <div class="ui celled unordered list">
+        <div class="item">{{val}}</div>
+    </div>
+
+{% endfor %}
+
+</body>
+</html> 

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database Frontend</title>
+    <!-- bootstrap-css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- semantic-css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <!-- new bootstrap-css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- semantic-js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <!-- new-bootstrap-js -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <!-- xlsx library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.1/xlsx.full.min.js"></script>
+</head>
+
+<style>
+body {
+        background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url("{{url_for('.static', filename='back.jpg')}}");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        height: 100vh;
+        color: #555;
+    }
+
+.wrapper {
+    width: 1400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:rgb(245, 238, 238);
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.panel-left,
+.panel-right {
+    width: 50%;
+    float: left;
+    height: 600px;
+    padding: 159px;
+    /* display: none; */
+}
+
+#graph-btn{
+    display: none;
+}
+
+.report {
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translateX(-50%);
+    /* height: 100px; */
+    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
+
+.active { background-color: #f7f7f7; }
+
+button {
+    width: 166px;
+    height: 38px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover { 
+    background-color: red;
+}
+
+.file {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+}
+
+.file input {
+    position: absolute;
+    width: 166px;
+    height: 38px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+</style>
+
+<body>
+    <div class="wrapper clearfix">
+        {% block body%}
+        {% endblock %}
+    </div>
+</body>
+<!-- You cannot place this chat.js in above libray. It shows nothing.
+you must place this script below inorder to have an access to the graphs -->
+<!-- <script src="{{url_for('.static', filename='chart.js')}}"></script> -->
+</html>

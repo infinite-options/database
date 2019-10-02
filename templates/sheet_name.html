@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<html>
+    <body>
+        <div>
+        <h2 class="ui header">
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        {% for message in messages %}
+        <div class="ui green message">{{message}}</div>
+    {% endfor %}
+    {%endif%}{%endwith%}
+    {% for sheet in nameOfSheet %}
+        <div class="ui floating message" style="width: 340px; margin-left:5%; text-align: center">
+                <p>{{sheet}}</p>
+        </div> 
+    {% endfor %}
+</h2>
+</div>
+</body>
+</html>
