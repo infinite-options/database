@@ -1,0 +1,99 @@
+
+{% extends 'main.html' %} {% block body %}
+<div id="displayName" style="color: black"></div>
+<div class="panel-left" id="inv">
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    {% for message in messages %}
+    <div class="ui error message" style="width: 340px">
+        <i class="close icon"></i>
+        <div class="header" >
+            {{message}}
+        </div>
+    </div>
+    {% endfor %}
+    {%endif%}{%endwith%}
+
+    <h1><span>Inventory File Upload</span></h1>
+    <br>
+    <form action="upload" method=POST enctype=multipart/form-data>
+
+         <button class="file ui inverted primary button" style="width: 166px; height: 38px;  margin-left: 22%"> 
+            <h4>Upload Inv</h4>
+            <input type=file name=myfile id="input-excel">
+         </button>
+         <br>
+         <br>
+         <div class="ui clearing segment" id="wrapper" style="text-align: center">
+            <h2 class="ui grey header">
+                Upload excel file to get a list of Tab Names
+            </h2>
+        </div>
+        <br>
+         <br>
+         <br>
+         <button class="file ui inverted green button" style="width: 166px; height: 38px;  margin-left: 22%""> 
+            <h4>Submit</h4>
+            <input type=submit>
+        </button>
+    </form>
+</div>
+
+<div class="panel-right active" id="inv">
+        <h1><span style="margin-left: 6% ">BOM File Upload</span></h1>
+        <br>
+        <form action="/upload" method="POST" enctype=multipart/form-data>
+    
+             <button class="file ui inverted primary button" style="width: 166px; height: 38px;  margin-left: 22%"> 
+                <h4>Upload Inv</h4>
+                <input type="file" name="fileName1" id="input-excel">
+             </button>
+             <br>
+             <br>
+             <div class="ui clearing segment"  style="text-align: center">
+                <h2 class="ui grey header" id="wrapper">
+                    Upload excel file to get a list of Tab Names
+                </h2>
+            </div>
+            <br>
+             <br>
+             <br>
+             <button class="file ui inverted green button" style="width: 166px; height: 38px;  margin-left: 22%"> 
+                <h4>Submit</h4>
+                <input type="submit">
+            </button>
+        </form>
+    </div>
+<a class="report ui inverted red button" href="/report" class="btn btn-lg btn-primary button" id="graph-btn" style="border-radius: 25px; font-size: 15px">Graph</a> 
+
+<script>
+
+    $('.message .close').on('click', function() {
+        $(this).closest('.message').transition('fade');
+   });
+
+   $('#input-excel').change(function(e){
+                var reader = new FileReader(); // excel file cell 
+                reader.readAsArrayBuffer(e.target.files[0]);
+                reader.onload = function(e) {
+                        var data = new Uint8Array(reader.result);
+                        var wb = XLSX.read(data,{type:'array'});
+                        var sheet_Names = wb.SheetNames;
+                        console.log(sheet_Names);
+                        var text = "";
+                        // var htmlstr = XLSX.write(wb,{sheet:"Inventory", type:'binary',bookType:'html'});
+                        for(var i = 0; i < sheet_Names.length; i++ ){
+                            if(sheet_Names[i] == ""){
+                                continue;
+                            } else {
+                                text += "[ " + sheet_Names[i] + " ]";
+                            }
+                        }
+                        $('#wrapper')[0].innerHTML = text;
+                }
+    });
+
+ </script>
+
+{% endblock %}
+
+

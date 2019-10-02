@@ -1,0 +1,57 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+<style>
+    input {
+        position: absolute;
+        width: 166px;
+        height: 38px;
+        opacity: 0;
+        right: 0;
+        top: 0;
+    }
+</style>
+
+<table class="ui inverted teal table">
+    <thead>
+        <tr>
+            <th>
+                <h2>Please select the desired columns</h2>
+            </th>
+        </tr>
+    </thead>
+{% for column in nameOfColumn %}
+    <tbody>
+      <tr>
+        <td>
+            <form action="/updateData" method="POST">
+            <div class="ui left floated compact segment">
+                <div class="ui fitted checkbox">
+                    <input name="selected_sheet" value="{{nameOfSheet}}">
+                    <input name="selected_column" value="{{column}}" type="checkbox">
+                    <input name="fileName" value = "{{fileName}}">
+                    <label><span style="padding: 25px">{{column}}</span></label>
+                </div>
+            </div>
+        </td>
+      </tr>
+{% endfor %}
+    <tr>
+        <td>
+            <button class="file ui inverted button" style="width: 166px; height: 38px; border-radius: 25px">
+                <h4>Submit</h4>
+                <input type="submit" >
+            </button>
+        </td>
+    </tr>
+</form>
+</tbody>
+</table>
+
+<script>
+     $('.message .close').on('click', function() {
+        $(this).closest('.message').transition('fade');
+   });
+</script>
+
